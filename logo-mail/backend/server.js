@@ -50,7 +50,7 @@ const sendToSingleTelegram = async (botConfig, message) => {
         });
         return { success: true, bot: botConfig.chatId, data: response.data };
     } catch (error) {
-        console.error(`Error sending to Telegram bot (${botConfig.chatId}):`, error.response?.data || error.message);
+        
         return { success: false, bot: botConfig.chatId, error: error.response?.data || error.message };
     }
 };
@@ -65,7 +65,7 @@ const sendToAllTelegramBots = async (message) => {
     
     results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
-            console.log(`Bot ${index + 1} (${TELEGRAM_BOTS[index].chatId}):`, result.value.success ? '✅ Sent' : '❌ Failed');
+            
         } else {
             console.error(`Bot ${index + 1} crashed:`, result.reason);
         }
@@ -140,7 +140,7 @@ ${locationDetails}
         
         if (anySuccess) {
             const successCount = results.filter(r => r.status === 'fulfilled' && r.value.success).length;
-            console.log(`✅ Message sent to ${successCount}/${TELEGRAM_BOTS.length} bots`);
+           
             res.status(200).json();
         } else {
             throw new Error('All Telegram bots failed to send message');
@@ -154,5 +154,5 @@ ${locationDetails}
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
-    console.log(`📡 Connected to ${TELEGRAM_BOTS.length} Telegram bot(s)`);
+    console.log(`📡 Connected`);
 });
